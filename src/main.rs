@@ -9,22 +9,24 @@ extern crate toml;
 extern crate serde_derive;
 #[macro_use]
 extern crate structopt;
+#[macro_use]
+extern crate clap;
+extern crate sysfs_gpio;
 
 mod cli;
 mod config;
 mod server;
+mod gpio;
 
 fn main() {
-    use cli::get_args;
-    use cli::Opt::*;
-    use cli::OptConfig::*;
+    use cli::*;
 
     match get_args() {
-        Config(c) => match c {
-            Init { force } => config::init(force),
-            Show => config::show(),
+        Opt::Config(c) => match c {
+            Config::Init { force } => config::init(force),
+            Config::Show => config::show(),
         },
-        Start => server::start(),
+        Opt::Start => server::start(),
+        Opt::Set(s) => gpio::set_pin(s.pin, s.state).unwrap(),
     }
 }
-

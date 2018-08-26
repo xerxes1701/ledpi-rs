@@ -9,8 +9,8 @@
             "name": "Debug (windows)",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/target/debug/piled-rs.exe",
-            "args": [],
+            "program": "${workspaceFolder}/target/debug/ledpi-rs.exe",
+            "args": ["config show"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -20,7 +20,7 @@
             "name": "Debug (linux)",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/target/debug/piled-rs",
+            "program": "${workspaceFolder}/target/debug/ledpi-rs",
             "args": [],
         }        
     ]
