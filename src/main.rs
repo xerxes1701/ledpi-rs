@@ -11,12 +11,15 @@ extern crate serde_derive;
 extern crate structopt;
 #[macro_use]
 extern crate clap;
+extern crate i2c_pca9685;
+extern crate i2cdev;
 extern crate sysfs_gpio;
 
 mod cli;
 mod config;
-mod server;
 mod gpio;
+mod pwm;
+mod server;
 
 fn main() {
     use cli::*;
@@ -27,6 +30,9 @@ fn main() {
             Config::Show => config::show(),
         },
         Opt::Start => server::start(),
-        Opt::Set(s) => gpio::set_pin(s.pin, s.state).unwrap(),
+        Opt::Set(s) => match s {
+            Set::Gpio { pin, state } => gpio::set_pin(pin, state).unwrap(),
+            Set::Pwm { pin, on, off } => pwm::set_pin(pin, on, off),
+        },
     }
 }
