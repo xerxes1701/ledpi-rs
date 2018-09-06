@@ -11,7 +11,6 @@ extern crate serde_derive;
 extern crate structopt;
 #[macro_use]
 extern crate clap;
-extern crate i2c_pca9685;
 extern crate i2cdev;
 extern crate sysfs_gpio;
 
@@ -20,6 +19,7 @@ mod config;
 mod gpio;
 mod pwm;
 mod server;
+mod pca9685;
 
 fn main() {
     use cli::*;

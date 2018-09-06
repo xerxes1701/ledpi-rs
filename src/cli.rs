@@ -62,17 +62,17 @@ pub enum Set {
     /// Sets one of the Adafruit-PCA9685 PWM pins
     #[structopt(name = "pwm")]
     Pwm {
-        /// the pin's number 0-12
+        /// the pin's number 0-16
         #[structopt(short = "p", long = "pin")]
         pin: u8,
 
-        /// the on-value 0-255
+        /// the on-value 0-4095
         #[structopt(long = "on")]
-        on: u8,
+        on: u16,
 
-        /// the off-value 0-255
+        /// the off-value 0-4095
         #[structopt(long = "off")]
-        off: u8,
+        off: u16,
     },
 }
 

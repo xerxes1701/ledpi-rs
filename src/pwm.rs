@@ -1,5 +1,6 @@
 use i2cdev::linux::LinuxI2CDevice;
-use i2c_pca9685::{PCA9685};
+
+use pca9685::PCA9685;
 
 pub fn get_pwm_dev() -> PCA9685<LinuxI2CDevice> {
     let i2c = LinuxI2CDevice::new("/dev/i2c-1", 0x40)
@@ -14,7 +15,7 @@ pub fn get_pwm_dev() -> PCA9685<LinuxI2CDevice> {
     return pca;
 }
 
-pub fn set_pin(pin: u8, on: u8, off: u8) {
+pub fn set_pin(pin: u8, on: u16, off: u16) {
     let mut pwm = get_pwm_dev();
 
     pwm.set_pwm(pin, on, off)
